@@ -1,0 +1,73 @@
+
+from IPython.display import clear_output
+
+boat_side="right"
+missionaries_on_right=3
+cannibals_on_right=3
+missionaries_on_left=0
+cannibals_on_left=0
+
+print(missionaries_on_left*'\U0001f482',cannibals_on_left*'\U0001f479','|',4*'\U0001f30a','\U0001f6A2','|',missionaries_on_right*'\U0001f482',cannibals_on_right*'\U0001f479')
+
+
+
+while True:
+    
+    missionaries=int(input("Enter number of missionaries:"))
+    cannibals=int(input("Enter number of cannibals:"))
+    clear_output()
+    if (missionaries+cannibals)>2 or (missionaries+cannibals)<=0:
+            print("Invalid move 1!!")
+            continue
+    if boat_side=="right":
+        
+        
+        
+        if (missionaries>missionaries_on_right) or (cannibals>cannibals_on_right):
+            print('Invalid move2!!')
+            continue
+
+        missionaries_on_left=missionaries+missionaries_on_left
+        missionaries_on_right=missionaries_on_right - missionaries
+        cannibals_on_left=cannibals+cannibals_on_left
+        cannibals_on_right=cannibals_on_right - cannibals
+        
+        
+
+        boat_side="left"
+        
+        print(missionaries_on_left*'\U0001f482',cannibals_on_left*'\U0001f479','|','\U0001f6A2',4*'\U0001f30a','|',missionaries_on_right*'\U0001f482',cannibals_on_right*'\U0001f479')
+        
+
+    elif boat_side=="left":
+        
+   
+
+        if (missionaries>missionaries_on_left) or (cannibals>cannibals_on_left):
+            print('Invalid move2!!')
+            continue
+
+        missionaries_on_right=missionaries_on_right+missionaries
+        cannibals_on_right=cannibals_on_right+cannibals
+        missionaries_on_left=missionaries_on_left-missionaries
+        cannibals_on_left=cannibals_on_left-cannibals
+        
+        
+
+        boat_side="right"
+        print(missionaries_on_left*'\U0001f482',cannibals_on_left*'\U0001f479','|',4*'\U0001f30a','\U0001f6A2','|',missionaries_on_right*'\U0001f482',cannibals_on_right*'\U0001f479')
+
+    if (missionaries_on_left<cannibals_on_left) and missionaries_on_left>0:
+            print('You lose!!')
+            break
+
+    elif (missionaries_on_right<cannibals_on_right) and missionaries_on_right>0:
+            print('You lose!!')
+            break
+
+
+    elif missionaries_on_left==3 and cannibals_on_left==3:
+            print('YOU WIN!!!!')
+            break
+
+clear_output()
